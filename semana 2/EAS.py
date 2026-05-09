@@ -1,6 +1,4 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 
 # Leer el dataset
 df = pd.read_csv('data/winemag-data-130k-v2.csv')
@@ -98,6 +96,8 @@ df_clean['country_code'] = df_clean['country'].astype('category').cat.codes
 # ==================================================================
 # Punto 9
 # ==================================================================
+
+
 def get_stars(x):
     if x >= 95:
         return 3
@@ -105,5 +105,6 @@ def get_stars(x):
         return 2
     else:
         return 1
+
 
 df_clean['stars'] = df_clean['points'].apply(get_stars)

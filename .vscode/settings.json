@@ -35,14 +35,10 @@
 	"cSpell.ignoreWords": ["pypdf"],
 	"editor.codeActionsOnSave": {
 		"source.organizeImports": "explicit",
-		"source.unusedImports": "explicit"
+		"source.unusedImports": "never"
 	},
 	"editor.detectIndentation": false,
 	"editor.formatOnSave": true,
-	"files.exclude": {
-		"pypdf-api": true,
-		"pypdf-react": true
-	},
 	"github.copilot.enable": {
 		"*": true,
 		"plaintext": false
