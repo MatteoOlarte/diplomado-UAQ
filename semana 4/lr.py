@@ -8,17 +8,23 @@ from sklearn.metrics import accuracy_score
 X, y = make_classification(
     n_samples=2000,
     n_features=2,
-    n_informative=10,
+    n_informative=2,
     n_redundant=0,
     n_clusters_per_class=1,
     flip_y=0.03,
     random_state=42
 )
 
+
 plt.figure(figsize=(16, 8))
-plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1], c='red', marker='o', label='Clase 0')
-plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1], c='blue', marker='x', label='Clase 1')
+plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1], color='blue')
+plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1], color='red')
 plt.show()
+
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
 
 
 class LogisticRegression:
@@ -58,3 +64,26 @@ class LogisticRegression:
 
     def predict(self, X, threshold=0.5):
         return (self.predict_proba(X) >= threshold).astype(int)
+
+
+modelo = LogisticRegression(learning_rate=0.01, n_iterations=5000)
+modelo.fit(X_train, y_train)
+
+
+# visualicemos la funcion de costo
+
+plt.plot(modelo.cost_history)
+plt.grid()
+plt.show()
+
+
+# clasifiquemos
+
+y_pred = modelo.predict(X_test)
+y_pred_proba = modelo.predict_proba(X_test)
+
+
+# evalemos el desempeñeo del modelo
+print('Exactitud: ', accuracy_score(y_test, y_pred))
+print('UAC-ROC ', roc_auc_score(y_test, y_pred))
+print('Reporte de clasificacion: \n', classification_report(y_test, y_pred))
