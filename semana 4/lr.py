@@ -1,9 +1,8 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.datasets import make_classification
+from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score, classification_report, confusion_matrix, roc_auc_score, roc_curve
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, roc_auc_score, roc_curve, ConfusionMatrixDisplay, classification_report
-from sklearn.metrics import accuracy_score
 
 X, y = make_classification(
     n_samples=2000,
@@ -60,7 +59,7 @@ class LogisticRegression:
         return self
 
     def predict_proba(self, X):
-        return self._sigmoid(np.dot(X, self.weights))
+        return self._sigmoid(np.dot(X, self.weights))  # type: ignore
 
     def predict(self, X, threshold=0.5):
         return (self.predict_proba(X) >= threshold).astype(int)
@@ -87,3 +86,7 @@ y_pred_proba = modelo.predict_proba(X_test)
 print('Exactitud: ', accuracy_score(y_test, y_pred))
 print('UAC-ROC ', roc_auc_score(y_test, y_pred))
 print('Reporte de clasificacion: \n', classification_report(y_test, y_pred))
+
+
+X_min, X_max = X_train[:, 0].min() - 1, X_train[:, 0].max() + 1
+X_min, X_max = X_train[:, 1].min() - 1, X_train[:, 1].max() + 1
