@@ -1,7 +1,9 @@
 {
 	"cSpell.words": [
+		"annot",
 		"axvline",
 		"basefmt",
+		"cmap",
 		"imblearn",
 		"intercuartílico",
 		"Jonkheer",
@@ -16,6 +18,8 @@
 		"sobremuestreados",
 		"sobremuestrear",
 		"submuestreo",
+		"vmax",
+		"vmin",
 		"xlabel",
 		"xlim",
 		"xtick",
@@ -47,5 +51,8 @@
 		"*": true,
 		"plaintext": false
 	},
-	"python.analysis.typeCheckingMode": "standard"
+	"python.analysis.typeCheckingMode": "standard",
+	"editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+	"notebook.markup.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+	"markdown.preview.fontFamily": "Menlo, Monaco, 'Courier New', monospace"
 }
