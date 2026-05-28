@@ -80,7 +80,6 @@ plt.show()
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Ubicacion Geografica vs MedHouseVal
-
 plt.figure(figsize=(12, 10))
 sns.scatterplot(
     x=data['Longitude'],
@@ -92,25 +91,25 @@ sns.scatterplot(
 plt.title('Ubicación Geográfica vs MedHouseVal')
 plt.show()
 
-plt.figure(figsize=(10, 6))
-sns.scatterplot(
-    x=data['HouseAge'],
-    y=data['MedHouseVal'],
-    alpha=0.5,
-    color='steelblue'
-)
-plt.title('HouseAge vs MedHouseVal')
+# HouseAge vs MedHouseVal
+x = data["MedInc"]
+y = data["MedHouseVal"]
+
+m, b = np.polyfit(x, y, 1)
+x_line = np.linspace(x.min(), x.max(), 200)
+
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.scatter(x, y, alpha=0.15, s=8, color="#185FA5", label="datos")
+ax.plot(x_line, m * x_line + b, color="#185FA5", linewidth=2, label="tendencia")
+ax.set_xlabel("MedInc", fontsize=11)
+ax.set_ylabel("MedHouseVal", fontsize=11)
+ax.set_title("MedInc vs MedHouseVal  |  r = 0.69 — correlación fuerte", fontsize=11)
+ax.grid(True, alpha=0.2)
+ax.legend(fontsize=9)
+plt.tight_layout()
+plt.savefig("scatter_medinc.png", dpi=150, bbox_inches="tight")
 plt.show()
 
-plt.figure(figsize=(10, 6))
-sns.scatterplot(
-    x=data['AveRooms'],
-    y=data['MedHouseVal'],
-    alpha=0.5,
-    color='lightslategray'
-)
-plt.title('AveRooms vs MedHouseVal')
-plt.show()
 
 
 # =============================================================================
